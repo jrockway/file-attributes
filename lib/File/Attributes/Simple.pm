@@ -90,6 +90,11 @@ sub unset {
 sub _attribute_file {
     my $self = shift;
     my $file = shift;
+
+    my $max = 10;
+    while($max-- && -l $file){
+	$file = readlink $file;
+    }
     
     my ($volume,$dirs,$filename) = File::Spec->splitpath($file);
     return File::Spec->catpath($volume, $dirs, ".$filename.attributes");

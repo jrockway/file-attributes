@@ -20,7 +20,7 @@ requires('Best' => 0.06);
 requires('YAML');
 requires('File::Spec');
 
-build_requires('Directory::Scratch');
+build_requires('Directory::Scratch' => 0.05);
 build_requires('Test::More');
 
 features('YAML::Syck for better performance'
