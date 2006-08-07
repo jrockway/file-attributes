@@ -179,17 +179,11 @@ hierarchy.  If you use this module directly (instead of one of the
 aforementioned decendants), then your attribute manipulations will
 Just Work, regardless of the underlying filesystem.
 
-As of version 0.01, this works by trying
-L<File::Attributes::Extended>, and if that fails,
-L<File::Attributes::Simple>.
-
-Note that if you need specific features of
-L<File::Attributes::Extended> (like reading attributes that don't
-start with C<user.>), then you'll need to use
-C<File::Attributes::Extended> directly.  This module prepends 'user.'
-to everything, for the sake of simplicity and portability.  (The
-'user.' prefix is only a requirement of Linux, other operating systems
-let user applications use whatever namespace they like.)
+Module::Pluggable is used to find all C<File::Attributes::> modules
+that inherit from C<File::Attributes::Base> and that are applicable on
+your system.  If it finds one, it uses that.  If not, it uses
+C<File::Attributes::Simple>, which is bundled with this module and
+works everywhere.
 
 =head1 EXPORT
 

@@ -11,7 +11,7 @@ use base qw(File::Attributes::Base);
 use Best [ [ qw/YAML::Syck YAML/ ], qw/DumpFile LoadFile/ ];
 use File::Spec;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 sub applicable {
     return 1; # this module Works Everywhere, hopefully.
