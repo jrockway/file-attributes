@@ -7,7 +7,7 @@ use warnings;
 use inc::Module::Install;
 
 name('File-Attributes');
-author('Jonathan Rockway <jrockway@cpan.org');
+author('Jonathan Rockway <jrockway@cpan.org>');
 version_from('lib/File/Attributes.pm');
 abstract_from('lib/File/Attributes.pm');
 license('Perl');
