@@ -5,7 +5,7 @@ package File::Attributes;
 use warnings;
 use strict;
 use Carp;
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 # modules that we require
 use Module::Pluggable ( search_path => 'File::Attributes',
@@ -152,7 +152,7 @@ File::Attributes - Manipulate file metadata
 
 =head1 VERSION
 
-Version 0.02
+Version 0.04
 
 =cut
 
