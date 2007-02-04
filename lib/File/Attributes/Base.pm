@@ -16,8 +16,14 @@ sub new {
     return $self;
 }
 
-sub applicable {
+sub priority {
     my $self = shift;
+    return 0;
+}
+
+sub applicable {
+    my $self     = shift;
+    my $filename = shift;
     return 0;
 } 
 
@@ -34,6 +40,28 @@ Currently, this class works like a pragma.  If something inherits from
 it, File::Attributes will assume it is trying to implement some sort of
 file attribute accessor.
 
+   package File::Attributes::MyAccessMethod;
+   use base 'File::Attributes::Base';
+
+   sub priority { 5 }
+
+   sub applicable {
+     my $self = shift;
+     my $file = shift;
+     eval {
+       $self->list($file);
+     }
+     return 1 if !$@;
+     return 0;
+   }
+
+   sub list {
+     my $self = shift;
+     ...
+   }
+   ...
+   1;
+
 =head1 METHODS
 
 =head2 new
@@ -41,10 +69,29 @@ file attribute accessor.
 Creates an instance.  You probably don't need to override this in your
 subclass.
 
-=head2 applicable
+=head2 priority
 
-Return true if this attribute class will work on this system.  False
-by default.
+Called to determine the order in which various subclasses should be
+used to get or set an attribute.  Classes will be called from highest
+priority to lowest priority until an attribute is successfully
+accessed.  The priority returned should be an integer between 0 and
+10.  0 is reserved for access methods that will work on any system,
+like L<File::Attributes::Simple|File::Attributes::Simple>.  10 should
+be used for plugins that will work for any file on any filesystem for
+a specific OS.  5 should be used for plugins that may or may not work,
+like UNIX extended filesystem attributes on UNIX-like systems; see
+L<File::Attributes::Extended|File::Attributes::Extended>.
+
+=head2 applicable($filename)
+
+Called to determine if this attribute access method works with
+C<$filename>.  Some systems have syscalls for attribute access that
+may be called on any file, but will fail if the "use attributes"
+option isn't set on that file's filesystem.  In this case,
+C<applicable> can return false so that an alternate access method is
+tried.
+
+This method will return true (1) if the class can access attributes for C<$filename> and false (0) otherwise.
 
 =head1 METHODS THAT SUBCLASSES SHOULD IMPLEMENT
 
