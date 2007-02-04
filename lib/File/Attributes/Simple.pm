@@ -13,6 +13,10 @@ use File::Spec;
 
 our $VERSION = '0.04';
 
+sub priority {
+    return 1; # try something else first, eh?
+}
+
 sub applicable {
     return 1; # this module Works Everywhere, hopefully.
 }
