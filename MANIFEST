@@ -26,7 +26,12 @@ t/base.t
 t/directory.t
 t/file_attributes.t
 t/hidden.t
+t/lib/File/Attributes/Test.pm
+t/override-notapplicable.t
+t/override.t
 t/pod-coverage.t
 t/pod.t
+t/simple-cleanup.t
 t/simple-link.t
 t/simple.t
+t/test-works.t
