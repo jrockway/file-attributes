@@ -33,7 +33,12 @@ sub _save {
     my $data = shift;
     my $attrfile = $self->_attribute_file($file);
 
-    DumpFile($attrfile, $data);
+    if(!scalar keys %$data){
+	unlink $attrfile;
+    }
+    else {
+	DumpFile($attrfile, $data);
+    }
 }
 
 sub list {

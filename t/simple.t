@@ -13,7 +13,7 @@ my $FILE = $tmp->touch('file');
 ok(-e $FILE);
 
 my $simple = File::Attributes::Simple->new;
-ok($simple =~ m{File::Attributes::Simple=SCALAR});
+ok($simple->isa('File::Attributes::Simple'));
 
 my @attrs = $simple->list($FILE);
 is_deeply([@attrs], [], 'clean start');
