@@ -53,7 +53,7 @@ sub list {
     eval {
 	$data = $self->_load($file);
     };
-    
+
     return keys %{$data};
 }
 
@@ -80,6 +80,7 @@ sub set {
     
     $data->{$key} = $value;
     $self->_save($file, $data);
+    return 1;
 }
 
 sub unset {
@@ -94,6 +95,7 @@ sub unset {
     
     delete $data->{$key};
     $self->_save($file, $data);
+    return 1;
 }
 
 sub _attribute_file {
