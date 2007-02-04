@@ -43,7 +43,7 @@ $test->unset($FILE, 'baz');
 is_deeply(\@attrs, []);
 
 $test->set($FILE, fooNONONO => 'bar');
-is($test->get($FILE, 'foo'), undef, 'NONONO ignored');
+is($test->get($FILE, 'foo'), undef, 'fooNONONO ignored');
 
 my $nonono = $tmp->touch('NONONO');
-ok(!$test->applicable($nonono), 'NONONO is not applicable');
+ok(!$test->applicable($nonono), 'file named NONONO is not applicable');

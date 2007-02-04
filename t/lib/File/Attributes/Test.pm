@@ -9,12 +9,13 @@ our $VERSION =
   'foo-o-matic';
 
 my %attributes;
+my $IGNORE = qr/NONONO/;
 
 # applicible unless filename contains "NONONO"
 sub applicable {
     my $self = shift;
     my $file = shift;
-    return 0 if $file =~ /NONONO/;
+    return 0 if $file =~ /$IGNORE/;
     return 1;
 }
 
@@ -22,12 +23,12 @@ sub applicable {
 sub priority { 1_000_000 }
 
 sub get {
-    return if $_[2] =~ /NONONO/; # ignore attributes that contain NONONO
+    return if $_[2] =~ /$IGNORE/; # ignore attributes that contain NONONO
     return $attributes{$_[1]}->{$_[2]};
 }
 
 sub set {    
-    return if $_[2] =~ /NONONO/; # ignore
+    return if $_[2] =~ /$IGNORE/; # ignore
     $attributes{$_[1]}->{$_[2]} = $_[3];
 }
 
