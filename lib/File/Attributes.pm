@@ -58,8 +58,7 @@ sub set_attributes {
     else {
 	%attributes = ($first, @_);
     }    
-
-
+    
     foreach my $key (keys %attributes){
 	set_attribute($file, $key, $attributes{$key});
     }
