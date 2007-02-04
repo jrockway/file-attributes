@@ -3,7 +3,7 @@
 # Copyright (c) 2007 Jonathan Rockway <jrockway@cpan.org>
 
 # make sure the ::Test module works
-use Test::More tests => 11;
+use Test::More tests => 12;
 use FindBin qw($Bin);
 use File::Spec;
 use lib File::Spec->catfile($Bin, 'lib');
