@@ -170,10 +170,21 @@ your system.  If it finds one, it uses that.  If not, it uses
 C<File::Attributes::Simple>, which is bundled with this module and
 works everywhere.
 
+As of version 0.04, plugins are now set up per-file, not per-system.
+This means that if you have C<File::Attributes::Extended> installed,
+extended attributes will be used where available, but Simple
+attributes will be used on files where extended attributes don't work
+(a FAT filesytem on a Linux machine, for example).  Existing simple
+attributes will be read even if extended attributes are available, but
+writes will affect only the extended attributes.  
+
+This means that you can switch to a better attribute plugin at any time,
+without losing any old data!
+
 =head1 EXPORT
 
 None, by default.  Specify the functions that you'd like to use as
-arguments to the module.
+arguments to the module.  If you want everything, specify C<:all>.
 
 =head1 FUNCTIONS
 

@@ -8,7 +8,8 @@ Revision history for File-Attributes
 	  - make "applicable" apply to individual files, not entire 
 	    installations
  	Attributes
-	  - use all "applicable" plugins for reading and deleting
+	  - use all "applicable" plugins for reading and deleting,
+	    allowing transparent upgrade to new attribute plugins
 
 0.01    2 July 2006
         First version, released on an unsuspecting world.
