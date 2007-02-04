@@ -122,19 +122,15 @@ sub _init {
     my $simple;
     foreach my $plugin (plugins()){
 	eval {
-	    if($plugin->isa('File::Attributes::Base') && $plugin->applicable){
-		if($plugin =~ /^File::Attributes::Simple[^:]/){
-		    # we want File::Attributes::Simple to be last, always.
-		    $simple = $plugin;
-		}
-		else {
-		    push @modules, $plugin;
-		}
-	    }
+	    push @modules, $plugin
+	      if $plugin->isa('File::Attributes::Base') && 
+		$plugin->priority > 0;
 	};
     }
 
-    @modules = (@modules, $simple) if $simple;
+    # sort 10, 9, ..., 1
+    @modules = reverse sort {$a->priority <=> $b->priority} @modules;
+    
     return scalar @modules;
 }
 

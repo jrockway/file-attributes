@@ -75,12 +75,14 @@ Called to determine the order in which various subclasses should be
 used to get or set an attribute.  Classes will be called from highest
 priority to lowest priority until an attribute is successfully
 accessed.  The priority returned should be an integer between 0 and
-10.  0 is reserved for access methods that will work on any system,
+10.  1 is reserved for access methods that will work on any system,
 like L<File::Attributes::Simple|File::Attributes::Simple>.  10 should
 be used for plugins that will work for any file on any filesystem for
 a specific OS.  5 should be used for plugins that may or may not work,
 like UNIX extended filesystem attributes on UNIX-like systems; see
 L<File::Attributes::Extended|File::Attributes::Extended>.
+
+A priority of 0 indicates that the module should not be used at all.
 
 =head2 applicable($filename)
 
