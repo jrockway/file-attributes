@@ -8,4 +8,6 @@ BEGIN {
 
 diag( "Testing File::Attributes $File::Attributes::VERSION, Perl $], $^X" );
 my @backends = File::Attributes::_modules;
-diag( "Available backends: @backends." );
+@backends = map { $_. ' ('.$_->VERSION.')' } @backends;
+my $backends = join ', ', @backends;
+diag( "Available backends: $backends." );
