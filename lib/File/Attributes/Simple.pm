@@ -138,6 +138,12 @@ All the standard ones, namely:
 
 =head2 applicable
 
+Applicable for every file.
+
+=head2 priority
+
+Priority 1 (low).
+
 =head1 EXTENDING
 
 If you want to implement a file attribute scheme, and can do so doing
