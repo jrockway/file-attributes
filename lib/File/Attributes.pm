@@ -38,17 +38,16 @@ sub _do_each {
     my @result;
     
     foreach my $plugin (@modules){
-	if(wantarray){
-	    eval {
+
+	my $wantarray = wantarray;
+	eval {
+	    if($wantarray){
 		@result = $plugin->$what(@_);
-	    };
-	}
-	else {
-	    eval {
+	    }
+	    else {
 		$result = $plugin->$what(@_);
-	    };
-	}
-	
+	    }
+	};
 	if($@){
 	    push @ERRORS, $@;
 	}
