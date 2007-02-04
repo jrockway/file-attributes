@@ -2,7 +2,7 @@
 # override.t 
 # Copyright (c) 2007 Jonathan Rockway <jrockway@cpan.org>
 
-use Test::More tests => 10;
+use Test::More tests => 15;
 use FindBin qw($Bin);
 use File::Spec;
 use lib (File::Spec->catfile($Bin, 'lib'));
@@ -43,3 +43,19 @@ ok($tmp->exists('.file.attributes'), 'real file got created');
 @result = list_attributes($FILE);
 is_deeply([sort @result], [sort qw|bar foo barNONONO fooNONONO|], 
 	  'set barNONONO and fooNONONO ok');
+
+$simple->set($FILE, foo => 'bar');
+is($simple->get($FILE, 'foo'), 'bar');
+
+unset_attributes($FILE, 'foo', 'bar');
+is($simple->get($FILE, 'foo'), undef, 'foo went away in both places');
+is(get_attribute($FILE, 'foo'), undef, 'foo went away properly');
+
+@result = list_attributes($FILE);
+is_deeply([sort @result], [sort qw|barNONONO fooNONONO|], 
+	  'got rid of foo and bar ok');
+
+unset_attributes($FILE, 'barNONONO', 'fooNONONO');
+@result = list_attributes($FILE);
+is_deeply([@result], [], 'got rid of everything else ok');
+

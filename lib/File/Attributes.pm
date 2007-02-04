@@ -80,7 +80,11 @@ sub get_attributes {
 }
 
 sub unset_attribute {
-    _foreach_plugin @_, sub { my $p = shift; $p->unset(@_) };
+    _foreach_plugin @_, 
+      sub { my $p = shift; 
+	    $p->unset(@_); 
+	    return; # force unset on all plugins
+	};
     return;
 }
 
