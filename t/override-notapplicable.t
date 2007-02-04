@@ -2,7 +2,7 @@
 # override-notapplicable.t 
 # Copyright (c) 2007 Jonathan Rockway <jrockway@cpan.org>
 
-use Test::More tests => 8;
+use Test::More tests => 9;
 use FindBin qw($Bin);
 use File::Spec;
 use lib (File::Spec->catfile($Bin, 'lib'));
@@ -14,6 +14,7 @@ use strict;
 use warnings;
 
 my @backends = File::Attributes::_modules;
+ok(scalar @backends > 1, 'at least 2 backends');
 my $test = shift @backends;
 is($test->VERSION, File::Attributes::Test->VERSION);
 ok($test->isa('File::Attributes::Test'), 'isa F::A::T');
