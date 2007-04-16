@@ -193,11 +193,11 @@ All functions throw an exception on error.
 =head2 get_attribute($file, $attribute)
 
 Returns the value of attribute C<$attribute> on file C<$file>.  If
-C<$attribute> doesn't exist, returns undefined.
+C<$attribute> doesn't exist, returns undef.
 
 =head2 set_attribute($file, $attribute => $value)
 
-Sets attribute $<attribute> on file C<$file> to C<$value>.
+Sets attribute C<$attribute> on file C<$file> to C<$value>.
 
 =head2 get_attributes($file)
 
@@ -221,8 +221,8 @@ C<$file>.
 
 =head2 list_attributes($file)
 
-Returns a list of the attributes on C<$file>.  Equivalent to (but
-faster than) C<keys get_attributes($file)>.
+Returns a list of the attributes on C<$file>.  Only the attribute
+names are returned, the values of the attributes are not.c
 
 =cut
 
